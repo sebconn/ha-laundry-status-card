@@ -1,19 +1,13 @@
 import { LaundryCardConfig, MachineState } from './types';
 import washerSvg from './assets/washer.svg';
 import dryerSvg from './assets/dryer.svg';
-import './editor';
-
-const CARD_VERSION = '1.0.0';
+const CARD_VERSION = '1.0.2';
 
 console.info(`%c LAUNDRY-STATUS-CARD %c v${CARD_VERSION} `, 'background:#4CAF50;color:#fff;font-weight:bold', 'background:#333;color:#fff');
 
 class LaundryStatusCard extends HTMLElement {
   private config!: LaundryCardConfig;
   private _hass: any;
-
-  static getConfigElement() {
-    return document.createElement('laundry-status-card-editor');
-  }
 
   static getStubConfig() {
     return {
