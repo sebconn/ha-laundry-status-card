@@ -23,12 +23,14 @@ trigger:
     id: door_opened
     platform: state
     to: "on"
-  - entity_id: input_select.washer_status
-    id: timer_reset
-    platform: state
-    to: "finished"
-    for:
-      hours: 2
+  # OPTIONAL: Remove the door_opened trigger above if you don't have a contact sensor
+  # and use this timer reset instead (resets to idle after 2 hours)
+  # - entity_id: input_select.washer_status
+  #   id: timer_reset
+  #   platform: state
+  #   to: "finished"
+  #   for:
+  #     hours: 2
 action:
   - choose:
       - conditions:
@@ -72,12 +74,13 @@ action:
               option: idle
             target:
               entity_id: input_select.washer_status
-      - conditions:
-          - condition: trigger
-            id: timer_reset
-        sequence:
-          - action: input_select.select_option
-            data:
-              option: idle
-            target:
-              entity_id: input_select.washer_status
+      # OPTIONAL: Uncomment if using timer_reset trigger instead of door sensor
+      # - conditions:
+      #     - condition: trigger
+      #       id: timer_reset
+      #   sequence:
+      #     - action: input_select.select_option
+      #       data:
+      #         option: idle
+      #       target:
+      #         entity_id: input_select.washer_status
