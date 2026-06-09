@@ -1,8 +1,28 @@
 # Laundry Status Card
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
+[![GitHub Release](https://img.shields.io/github/v/release/sebconn/ha-laundry-status-card)](https://github.com/sebconn/ha-laundry-status-card/releases)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sebconn)
+
 A custom Home Assistant Lovelace card that displays washer and dryer status with SVG visuals.
 
 ![Preview](preview.png)
+
+## Installation
+
+### HACS (recommended)
+
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=sebconn&repository=ha-laundry-status-card&category=lovelace)
+
+Or manually:
+1. Open HACS → Frontend → Custom repositories
+2. Add `sebconn/ha-laundry-status-card` (category: Lovelace)
+3. Install "Laundry Status Card"
+
+### Manual
+1. Download `laundry-status-card.js` from the [latest release](https://github.com/sebconn/ha-laundry-status-card/releases/latest)
+2. Place in `/config/www/`
+3. Add as a resource: `/local/laundry-status-card.js`
 
 ## Features
 
@@ -10,8 +30,14 @@ A custom Home Assistant Lovelace card that displays washer and dryer status with
 - Time since finished display
 - Real-time power consumption readout
 - Optional door sensor indicators
-- Fully configurable via visual editor
 - Customizable colors, labels, and SVG sizing
+- Light and dark theme compatible
+
+## Screenshots
+
+| Idle | Running | Finished |
+|------|---------|----------|
+| ![Idle](preview.png) | Green fill, no timer | Yellow fill with minutes |
 
 ## Requirements
 
@@ -41,18 +67,6 @@ The automation monitors power consumption and sets the status:
 - Door opened → set `idle`
 
 See [automation-example.yaml](automation-example.yaml) for a complete example.
-
-## Installation
-
-### HACS (recommended)
-1. Add this repository as a custom repository in HACS
-2. Install "Laundry Status Card"
-3. Add the resource to your dashboard
-
-### Manual
-1. Download `laundry-status-card.js` from the latest release
-2. Place in `/config/www/`
-3. Add as a resource: `/local/laundry-status-card.js`
 
 ## Configuration
 
@@ -89,12 +103,12 @@ washer_door_entity: binary_sensor.washingmachinedoor1_contact
 dryer_door_entity: binary_sensor.dryerdoor1_contact
 ```
 
-## License
-
-MIT
-
 ## Support
 
 If you find this card useful, consider buying me a coffee:
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sebconn)
+
+## License
+
+MIT
