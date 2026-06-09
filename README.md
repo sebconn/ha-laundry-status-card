@@ -85,3 +85,9 @@ dryer_door_entity: binary_sensor.dryerdoor1_contact
 ## License
 
 MIT
+
+## Support
+
+If you find this card useful, consider buying me a coffee:
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/sebconn)
