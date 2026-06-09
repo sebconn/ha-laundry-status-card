@@ -15,6 +15,13 @@ A custom Home Assistant Lovelace card that displays washer and dryer status with
 
 ## Requirements
 
+### Hardware
+
+- **Smart plug with power monitoring** for each machine (e.g., Zigbee smart plug reporting watts)
+- **Door contact sensor** (optional but strongly recommended) for each machine — resets status to idle when door is opened. Without this, status resets via a timer after a configurable period.
+
+### Software
+
 This card requires:
 - **Power sensor entities** for each machine (e.g., from a smart plug)
 - **`input_select` helpers** with options: `idle`, `running`, `finished`
