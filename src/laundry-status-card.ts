@@ -98,7 +98,7 @@ class LaundryStatusCard extends HTMLElement {
         .svg-container { position: relative; display: inline-block; }
         .svg-container svg { width: 100%; height: 100%; color: var(--primary-text-color); }
         .overlay-text {
-          position: absolute; top: 58%; left: 50%;
+          position: absolute; top: 62%; left: 50%;
           transform: translate(-50%, -50%);
           font-size: 20px; font-weight: bold;
         }
