@@ -1,0 +1,67 @@
+# Example automation for washer status tracking
+# Duplicate and adjust entities for dryer
+
+alias: Washing Machine Status
+description: Tracks washer state via input_select. Notifies on start/finish.
+mode: restart
+trigger:
+  - above: 5
+    entity_id: sensor.washingmachine1_power
+    for:
+      seconds: 30
+    id: started
+    platform: numeric_state
+  - below: 5
+    entity_id: sensor.washingmachine1_power
+    for:
+      minutes: 5
+    id: finished
+    platform: numeric_state
+  - entity_id: binary_sensor.washingmachinedoor1_contact
+    from: "off"
+    id: door_opened
+    platform: state
+    to: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: started
+          - condition: state
+            entity_id: input_select.washer_status
+            state: idle
+        sequence:
+          - action: input_select.select_option
+            data:
+              option: running
+            target:
+              entity_id: input_select.washer_status
+          - action: notify.notify
+            data:
+              message: Washing machine has started
+              title: Washing Machine
+      - conditions:
+          - condition: trigger
+            id: finished
+          - condition: state
+            entity_id: input_select.washer_status
+            state: running
+        sequence:
+          - action: input_select.select_option
+            data:
+              option: finished
+            target:
+              entity_id: input_select.washer_status
+          - action: notify.notify
+            data:
+              message: Washing machine finished. Please unload it.
+              title: Washing Machine
+      - conditions:
+          - condition: trigger
+            id: door_opened
+        sequence:
+          - action: input_select.select_option
+            data:
+              option: idle
+            target:
+              entity_id: input_select.washer_status
