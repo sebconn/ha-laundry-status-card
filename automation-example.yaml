@@ -1,5 +1,6 @@
 # Example automation for washer status tracking
 # Duplicate and adjust entities for dryer
+# Timer reset: auto-resets to idle after 2 hours if door sensor is unavailable
 
 alias: Washing Machine Status
 description: Tracks washer state via input_select. Notifies on start/finish.
@@ -22,6 +23,12 @@ trigger:
     id: door_opened
     platform: state
     to: "on"
+  - entity_id: input_select.washer_status
+    id: timer_reset
+    platform: state
+    to: "finished"
+    for:
+      hours: 2
 action:
   - choose:
       - conditions:
@@ -59,6 +66,15 @@ action:
       - conditions:
           - condition: trigger
             id: door_opened
+        sequence:
+          - action: input_select.select_option
+            data:
+              option: idle
+            target:
+              entity_id: input_select.washer_status
+      - conditions:
+          - condition: trigger
+            id: timer_reset
         sequence:
           - action: input_select.select_option
             data:
