@@ -35,9 +35,7 @@ Or manually:
 
 ## Screenshots
 
-| Idle | Running | Finished |
-|------|---------|----------|
-| ![Idle](preview.png) | Green fill, no timer | Yellow fill with minutes |
+![Preview](preview.png)
 
 ## Requirements
 
