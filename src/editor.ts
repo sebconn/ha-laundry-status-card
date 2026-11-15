@@ -15,6 +15,7 @@ const SCHEMA = [
   { name: 'show_power', selector: { boolean: {} } },
   { name: 'show_time', selector: { boolean: {} } },
   { name: 'show_labels', selector: { boolean: {} } },
+  { name: 'show_door_indicator', selector: { boolean: {} } },
   { name: 'svg_width', selector: { number: { min: 80, max: 200, step: 10, mode: 'slider' } } },
   { name: 'svg_height', selector: { number: { min: 120, max: 250, step: 10, mode: 'slider' } } },
   { name: 'fill_opacity', selector: { number: { min: 0, max: 1, step: 0.1, mode: 'slider' } } },
