@@ -1,7 +1,7 @@
 import { LaundryCardConfig, MachineState } from './types';
 import washerSvg from './assets/washer.svg';
 import dryerSvg from './assets/dryer.svg';
-const CARD_VERSION = '1.1.0';
+const CARD_VERSION = '1.1.1';
 
 console.info(`%c LAUNDRY-STATUS-CARD %c v${CARD_VERSION} `, 'background:#4CAF50;color:#fff;font-weight:bold', 'background:#333;color:#fff');
 
@@ -71,17 +71,15 @@ class LaundryStatusCard extends HTMLElement {
     const timeText = showTime && state.minutes !== null ? `${state.minutes}m` : '';
     const powerText = showPower && state.status === 'running' ? `${Math.round(state.power)}W` : '';
     const statusText = state.status === 'idle' ? 'Idle' : (state.status === 'finished' ? 'Done' : '');
-    // Only shown for the door-open exception case; a closed door is the expected state and stays silent.
-    const doorBadge = showDoorIndicator && state.doorOpen
-      ? `<ha-icon class="door-badge" icon="mdi:door-open"></ha-icon>`
-      : '';
+    // Reuses one of the control-panel knobs drawn in the SVG as a door light: a closed
+    // door leaves it matching its twin (currentColor); only an open door tints it.
+    const doorIndicatorStyle = showDoorIndicator && state.doorOpen ? '--door-indicator-color:#FF9800;' : '';
 
     return `
       <div class="machine">
         <div class="svg-container" style="width:${width}px;height:${height}px;position:relative">
-          <div style="opacity:${fillOpacity}">${styledSvg}</div>
+          <div style="opacity:${fillOpacity};${doorIndicatorStyle}">${styledSvg}</div>
           ${timeText ? `<div class="overlay-text" style="color:${textColor}">${timeText}</div>` : ''}
-          ${doorBadge}
         </div>
         ${showLabels ? `<div class="label">${label}</div>` : ''}
         <div class="sub-label">${powerText || statusText}</div>
@@ -110,16 +108,6 @@ class LaundryStatusCard extends HTMLElement {
         }
         .label { font-weight: bold; margin-top: 4px; }
         .sub-label { font-size: 12px; opacity: 0.7; }
-        .door-badge {
-          position: absolute; top: 4px; right: 4px;
-          width: 20px; height: 20px; border-radius: 50%;
-          display: flex; align-items: center; justify-content: center;
-          background: var(--card-background-color, #1c1c1c);
-          border: 1px solid var(--divider-color, rgba(127,127,127,0.4));
-          color: #FF9800;
-          --mdc-icon-size: 13px;
-          box-shadow: 0 1px 3px rgba(0,0,0,0.3);
-        }
       </style>
       <div class="container">
         ${this.renderMachine(washerSvg, washer, c.washer_label ?? 'Washer')}

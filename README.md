@@ -29,7 +29,7 @@ Or manually:
 - SVG machine visuals with color-coded status (running/finished/idle)
 - Time since finished display
 - Real-time power consumption readout
-- Optional door-open badge — appears only while a door is left open, silent otherwise
+- Optional door-open indicator — one of the control-panel knobs lights up amber only while that door is left open, otherwise blends in
 - Customizable colors, labels, and SVG sizing
 - Light and dark theme compatible
 
@@ -84,7 +84,7 @@ See [automation-example.yaml](automation-example.yaml) for a complete example.
 | `show_power` | boolean | `true` | Show wattage when running |
 | `show_time` | boolean | `true` | Show minutes since finished |
 | `show_labels` | boolean | `true` | Show machine labels |
-| `show_door_indicator` | boolean | `true` | Show a small badge when a door (requires `*_door_entity`) is open |
+| `show_door_indicator` | boolean | `true` | Light up a control-panel knob when a door (requires `*_door_entity`) is open |
 | `svg_width` | number | `130` | SVG width in pixels |
 | `svg_height` | number | `180` | SVG height in pixels |
 | `fill_opacity` | number | `0.7` | Door fill opacity |
